@@ -10,11 +10,10 @@ spring:
 # MyBatis mapper.xml路径配置
 mybatis:
   mapper-locations:
-    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
     - classpath:dao/*.xml
 server:
   port: 8088
-    spring.application.name=rbac-backend
 
 logging:
   level:

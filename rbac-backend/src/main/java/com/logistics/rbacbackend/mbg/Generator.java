@@ -13,7 +13,6 @@ import java.util.List;
  * @author DDY
  * @version 1.0
  * @date 2025/12/29-22:02
- * @description com.logistics.rbacbackend.mbg
  */
 public class Generator {
     public static void main(String[] args) throws Exception {
