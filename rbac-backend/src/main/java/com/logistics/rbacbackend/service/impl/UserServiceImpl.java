@@ -77,6 +77,10 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void updateUser(Long userId, UserUpdateDTO dto) {
+        if (dto == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+
         if (userId == null) {
             throw new IllegalArgumentException("userId 不能为空");
         }
@@ -89,7 +93,10 @@ public class UserServiceImpl implements UserService {
         patch.setId(userId);
         patch.setEmail(dto == null ? null : dto.getEmail());
 
-        usersMapper.updateByPrimaryKeySelective(patch);
+        int rows = usersMapper.updateByPrimaryKeySelective(patch);
+        if (rows != 1) {
+            throw new IllegalArgumentException("更新用户失败: " + userId);
+        }
     }
 
     @Override
@@ -100,6 +107,10 @@ public class UserServiceImpl implements UserService {
         }
         if (dto == null) {
             throw new IllegalArgumentException("参数不能为空");
+        }
+
+        if ((dto.getOldPassword().isBlank()) || (dto.getNewPassword().isBlank())) {
+            throw new IllegalArgumentException("旧密码/新密码不能为空");
         }
 
         Users u = usersMapper.selectByPrimaryKey(userId);
@@ -115,8 +126,12 @@ public class UserServiceImpl implements UserService {
         Users patch = new Users();
         patch.setId(userId);
         patch.setPassword(passwordEncoder.encode(dto.getNewPassword()));
-        usersMapper.updateByPrimaryKeySelective(patch);
+        int rows = usersMapper.updateByPrimaryKeySelective(patch);
+        if (rows != 1) {
+            throw new IllegalArgumentException("修改密码失败: " + userId);
+        }
     }
+
 
     @Override
     public PageInfo<UserVO> listUsers(int pageNum, int pageSize, String username) {
@@ -172,9 +187,15 @@ public class UserServiceImpl implements UserService {
         if (userId == null) {
             throw new IllegalArgumentException("userId 不能为空");
         }
-        usersMapper.deleteByPrimaryKey(userId);
-        // 注意：如果你对 user_roles 做了外键 ON DELETE CASCADE，会自动删关联
-        // 否则建议在 RbacService 或这里额外删除 user_roles 关联（更健壮）
+        Users exist = usersMapper.selectByPrimaryKey(userId);
+        if (exist == null) {
+            throw new IllegalArgumentException("用户不存在: " + userId);
+        }
+
+        int rows = usersMapper.deleteByPrimaryKey(userId);
+        if (rows != 1) {
+            throw new IllegalArgumentException("删除用户失败: " + userId);
+        }
     }
 
     private UserVO toVOWithoutRoles(Users u) {
