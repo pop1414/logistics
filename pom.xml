@@ -62,7 +62,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
+            <scope>runtime</scope>  <!-- 仅运行时生效 -->
+            <optional>true</optional> <!-- 防止依赖传递 -->
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -149,6 +150,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 
