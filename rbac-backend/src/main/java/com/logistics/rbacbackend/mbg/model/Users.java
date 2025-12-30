@@ -1,7 +1,6 @@
 package com.logistics.rbacbackend.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,13 +16,11 @@ public class Users implements Serializable {
     @ApiModelProperty(value = "邮箱")
     private String email;
 
-
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
-
 
     private static final long serialVersionUID = 1L;
 
@@ -74,7 +71,6 @@ public class Users implements Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-
 
     @Override
     public String toString() {
