@@ -1,6 +1,7 @@
 package com.logistics.rbacbackend.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,6 +18,7 @@ public class Roles implements Serializable {
     private Boolean isInitial;
 
     private Date createTime;
+
 
     private static final long serialVersionUID = 1L;
 

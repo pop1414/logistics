@@ -1,6 +1,7 @@
 package com.logistics.rbacbackend.mbg.model;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,14 +17,13 @@ public class Users implements Serializable {
     @ApiModelProperty(value = "邮箱")
     private String email;
 
-    @ApiModelProperty(value = "用户类型，基于文档角色")
-    private String type;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
+
 
     private static final long serialVersionUID = 1L;
 
@@ -59,14 +59,6 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -83,6 +75,7 @@ public class Users implements Serializable {
         this.updateTime = updateTime;
     }
 
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -93,7 +86,6 @@ public class Users implements Serializable {
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
         sb.append(", email=").append(email);
-        sb.append(", type=").append(type);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
