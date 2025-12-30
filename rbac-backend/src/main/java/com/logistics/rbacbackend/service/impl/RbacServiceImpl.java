@@ -6,6 +6,7 @@ import com.logistics.rbacbackend.mbg.mapper.UserRolesMapper;
 import com.logistics.rbacbackend.mbg.mapper.UsersMapper;
 import com.logistics.rbacbackend.mbg.model.*;
 import com.logistics.rbacbackend.service.RbacService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
@@ -17,6 +18,7 @@ import java.util.Objects;
  * @version 1.0
  * @date 2025/12/30-10:32
  */
+@Service
 public class RbacServiceImpl implements RbacService {
     private final UsersMapper usersMapper;
     private final UserRolesMapper userRolesMapper;

@@ -5,13 +5,22 @@
 
 <mapper namespace="com.logistics.rbacbackend.dao.RbacQueryDao">
 
-    <select id="selectPermCodesByUserId" resultType="string">
+    <!--    <select id="selectPermCodesByUserId" resultType="string">
+            SELECT DISTINCT p.perm_name
+            FROM user_roles ur
+                     JOIN role_permissions rp ON ur.role_id = rp.role_id
+                     JOIN permissions p ON rp.perm_id = p.id
+            WHERE ur.user_id = #{userId}
+            ORDER BY p.module, p.perm_name
+        </select>-->
+
+    <select id="selectPermCodesByUserId" resultType="java.lang.String">
         SELECT DISTINCT p.perm_name
         FROM user_roles ur
-                 JOIN role_permissions rp ON ur.role_id = rp.role_id
-                 JOIN permissions p ON rp.perm_id = p.id
+        JOIN role_permissions rp ON rp.role_id = ur.role_id
+        JOIN permissions p ON p.id = rp.perm_id
         WHERE ur.user_id = #{userId}
-        ORDER BY p.module, p.perm_name
+        ORDER BY p.perm_name
     </select>
 
     <select id="selectRoleIdsByUserId" resultType="long">

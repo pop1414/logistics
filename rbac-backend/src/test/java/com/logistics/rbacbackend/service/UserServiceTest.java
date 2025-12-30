@@ -1,4 +1,4 @@
-package com.logistics.rbacbackend.mgb.service;
+package com.logistics.rbacbackend.service;
 
 import com.github.pagehelper.PageInfo;
 import com.logistics.rbacbackend.dto.UserCreateDTO;
@@ -10,7 +10,6 @@ import com.logistics.rbacbackend.mbg.mapper.UsersMapper;
 import com.logistics.rbacbackend.mbg.model.Roles;
 import com.logistics.rbacbackend.mbg.model.UserRoles;
 import com.logistics.rbacbackend.mbg.model.Users;
-import com.logistics.rbacbackend.service.UserService;
 import com.logistics.rbacbackend.vo.UserVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

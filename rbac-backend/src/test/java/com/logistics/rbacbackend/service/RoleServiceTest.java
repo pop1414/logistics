@@ -1,4 +1,4 @@
-package com.logistics.rbacbackend.mgb.service;
+package com.logistics.rbacbackend.service;
 
 
 import com.github.pagehelper.PageInfo;
@@ -6,7 +6,6 @@ import com.logistics.rbacbackend.dto.RoleCreateDTO;
 import com.logistics.rbacbackend.dto.RoleUpdateDTO;
 import com.logistics.rbacbackend.mbg.mapper.RolesMapper;
 import com.logistics.rbacbackend.mbg.model.Roles;
-import com.logistics.rbacbackend.service.RoleService;
 import com.logistics.rbacbackend.vo.RoleVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

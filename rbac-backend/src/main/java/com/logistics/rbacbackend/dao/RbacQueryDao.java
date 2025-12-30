@@ -1,5 +1,6 @@
 package com.logistics.rbacbackend.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @version 1.0
  * @date 2025/12/30-10:08
  */
+@Mapper
 public interface RbacQueryDao {
     /**
      * 根据用户ID查询权限码（perm_name）列表
