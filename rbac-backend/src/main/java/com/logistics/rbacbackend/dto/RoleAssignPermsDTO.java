@@ -1,5 +1,7 @@
 package com.logistics.rbacbackend.dto;
 
+import java.util.List;
+
 /**
  * @author DDY
  * @version 1.0
@@ -7,4 +9,13 @@ package com.logistics.rbacbackend.dto;
  * @description com.logistics.rbacbackend.dto
  */
 public class RoleAssignPermsDTO {
+    private List<Long> permIds;
+
+    public List<Long> getPermIds() {
+        return permIds;
+    }
+
+    public void setPermIds(List<Long> permIds) {
+        this.permIds = permIds;
+    }
 }
