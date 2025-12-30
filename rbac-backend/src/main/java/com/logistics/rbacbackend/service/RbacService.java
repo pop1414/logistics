@@ -22,4 +22,10 @@ public interface RbacService {
      * 查用户权限码列表（用于鉴权）
      */
     List<String> getUserPermCodes(Long userId);
+
+    /**
+     * 查角色权限码列表（用于回显）
+     */
+    List<Long> getPermIdsByRoleId(Long roleId);
+
 }

@@ -26,4 +26,10 @@ public interface RbacQueryDao {
      * 根据角色ID查询权限ID列表
      */
     List<Long> selectPermIdsByRoleId(@Param("roleId") Long roleId);
+
+    /**
+     * 用于super_admin 判断
+     */
+    List<String> selectRoleNamesByUserId(Long userId);
+
 }

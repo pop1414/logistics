@@ -38,6 +38,9 @@
         <junit.version>5.13.4</junit.version>
         <spring.boot.security.version>3.5.7</spring.boot.security.version>
         <spring.tx.version>6.1.10</spring.tx.version>
+        <jjwt.api.version>0.12.6</jjwt.api.version>
+        <jjwt.impl.version>0.12.6</jjwt.impl.version>
+        <jjwt.jackson.version>0.12.6</jjwt.jackson.version>
     </properties>
 
     <dependencies>
@@ -114,11 +117,23 @@
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-            <!--JWT(Json Web Token)登录支持-->
+            <!-- JWT: JJWT -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.impl.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.jackson.version}</version>
+                <scope>runtime</scope>
             </dependency>
             <!--Mysql数据库驱动-->
             <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->

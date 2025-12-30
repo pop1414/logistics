@@ -101,7 +101,7 @@ public class RbacServiceImpl implements RbacService {
         if (rolesMapper.selectByPrimaryKey(roleId) == null) {
             throw new IllegalArgumentException("角色不存在 roleId=" + roleId);
         }
-        
+
         // 1. 删除旧关联
         RolePermissionsExample delEx = new RolePermissionsExample();
         delEx.createCriteria().andRoleIdEqualTo(roleId);
@@ -141,4 +141,17 @@ public class RbacServiceImpl implements RbacService {
         }
         return rbacQueryMapper.selectPermCodesByUserId(userId);
     }
+
+    /**
+     * 4) 查角色权限码列表：联表查询（用于回显）
+     */
+    @Override
+    public List<Long> getPermIdsByRoleId(Long roleId) {
+        if (roleId == null) {
+            throw new IllegalArgumentException("roleId 不能为空");
+        }
+        List<Long> ids = rbacQueryMapper.selectPermIdsByRoleId(roleId);
+        return ids == null ? java.util.Collections.emptyList() : ids;
+    }
+
 }

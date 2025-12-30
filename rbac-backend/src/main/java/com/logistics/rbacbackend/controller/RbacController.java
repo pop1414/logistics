@@ -57,4 +57,13 @@ public class RbacController {
     public ApiResponse<List<String>> getUserPermCodes(@PathVariable Long userId) {
         return ApiResponse.ok(rbacService.getUserPermCodes(userId));
     }
+
+    /**
+     * 查询角色权限码
+     */
+    @GetMapping("/roles/{roleId}/perm-ids")
+    public ApiResponse<List<Long>> getRolePermIds(@PathVariable Long roleId) {
+        return ApiResponse.ok(rbacService.getPermIdsByRoleId(roleId));
+    }
+
 }

@@ -20,3 +20,7 @@ server:
 logging:
   level:
     org.springframework: info
+
+jwt:
+  secret: "PLEASE_CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_32CHARS_MIN"
+  expireSeconds: 86400   # 1天
