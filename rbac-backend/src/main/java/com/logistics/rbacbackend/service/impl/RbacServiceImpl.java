@@ -2,6 +2,7 @@ package com.logistics.rbacbackend.service.impl;
 
 import com.logistics.rbacbackend.dao.RbacQueryDao;
 import com.logistics.rbacbackend.mbg.mapper.RolePermissionsMapper;
+import com.logistics.rbacbackend.mbg.mapper.RolesMapper;
 import com.logistics.rbacbackend.mbg.mapper.UserRolesMapper;
 import com.logistics.rbacbackend.mbg.mapper.UsersMapper;
 import com.logistics.rbacbackend.mbg.model.*;
@@ -21,15 +22,18 @@ import java.util.Objects;
 @Service
 public class RbacServiceImpl implements RbacService {
     private final UsersMapper usersMapper;
+    private final RolesMapper rolesMapper;
     private final UserRolesMapper userRolesMapper;
     private final RolePermissionsMapper rolePermissionsMapper;
     private final RbacQueryDao rbacQueryMapper;
 
     public RbacServiceImpl(UsersMapper usersMapper,
+                           RolesMapper rolesMapper,
                            UserRolesMapper userRolesMapper,
                            RolePermissionsMapper rolePermissionsMapper,
                            RbacQueryDao rbacQueryMapper) {
         this.usersMapper = usersMapper;
+        this.rolesMapper = rolesMapper;
         this.userRolesMapper = userRolesMapper;
         this.rolePermissionsMapper = rolePermissionsMapper;
         this.rbacQueryMapper = rbacQueryMapper;
@@ -69,6 +73,13 @@ public class RbacServiceImpl implements RbacService {
             return;
         }
 
+        // 可选：校验 role 是否存在（更健壮）
+        for (Long rid : cleaned) {
+            if (rolesMapper.selectByPrimaryKey(rid) == null) {
+                throw new IllegalArgumentException("角色不存在 roleId=" + rid);
+            }
+        }
+
         // 4. 插入新关联
         for (Long roleId : cleaned) {
             UserRoles ur = new UserRoles();
@@ -87,7 +98,10 @@ public class RbacServiceImpl implements RbacService {
         if (roleId == null) {
             throw new IllegalArgumentException("roleId 不能为空");
         }
-
+        if (rolesMapper.selectByPrimaryKey(roleId) == null) {
+            throw new IllegalArgumentException("角色不存在 roleId=" + roleId);
+        }
+        
         // 1. 删除旧关联
         RolePermissionsExample delEx = new RolePermissionsExample();
         delEx.createCriteria().andRoleIdEqualTo(roleId);
